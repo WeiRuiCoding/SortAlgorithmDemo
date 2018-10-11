@@ -15,7 +15,7 @@ public class TestSortDemo {
 		int[] array = { 72, 33, 56, 81, 22, 65, 15, 99, 100 };
 
 		System.out.println("排序前:" + SortUtil.printArray(array));
-//		 bubbleSort(array);
+		 bubbleSort(array);
 //		 selectSort(array);
 //		 quickSort(array, 0, array.length - 1);
 //		 mergeSort(array, 0, array.length - 1);
