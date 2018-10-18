@@ -20,7 +20,7 @@ public class TestSortDemo {
 //		directInsertSort(array);
 //		shellSort(array);
 //		System.out.println("排序后:" + SortUtil.printArray(countSort(array)));
-		radixSort(array, 3);
+//		radixSort(array, 3);
 		System.out.println("排序后:" + SortUtil.printArray(array));
 	}
 	
