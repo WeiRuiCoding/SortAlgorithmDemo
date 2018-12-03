@@ -30,12 +30,12 @@ public class TestSortDemo {
 		if(array == null || array.length == 0)
 			return;
 		
-		for(int i = 0; i < array.length - 1; i++){
+		for(int i = 0;i < array.length - 1; i++){
 			for(int j = 0; j < array.length - 1 - i; j++){
-				if(array[j] > array[j + 1]){
-					int temp = array[j];
-					array[j] = array[j + 1];
-					array[j + 1] = temp;
+				if(array[j + 1] < array[j]){
+					int temp = array[j + 1];
+					array[j + 1] = array[j];
+					array[j] = temp;
 				}
 			}
 		}
@@ -49,10 +49,12 @@ public class TestSortDemo {
 		
 		for(int i = 0; i < array.length - 1; i++){
 			int min = i;
-			for(int j = i; j < array.length - 1;j++){
-				if(array[j+1] < array[min])
-					min = j+1;
+			
+			for(int j = i; j < array.length - 1; j++){
+				if(array[j + 1] < array[min])
+					min = j + 1;
 			}
+			
 			if(min != i){
 				int temp = array[i];
 				array[i] = array[min];
@@ -77,6 +79,7 @@ public class TestSortDemo {
 				array[i] = array[j];
 				i++;
 			}
+			
 			//从前向后搜索比key大的值
 			while(i < j && array[i] < key)
 				i++;
@@ -88,21 +91,24 @@ public class TestSortDemo {
 		
 		array[i] = key;
 		
-		//对key左边部分进行快速排序
-		if(i > start)
+		//对比key小的序列进行快速排序
+		if(i - 1 > start){
 			quickSort(array, start, i - 1);
-		//对key右边部分进行快速排序
-		if(j + 1 < end)
+		}
+		//对比key大的序列进行快速排序
+		if(j + 1 < end){
 			quickSort(array, j + 1, end);
+		}
 	}
 	
 	//归并排序
-	public static void mergeSort(int[] array,int low,int high){
+	public static void mergeSort(int[] array,int low, int high){
 		
 		if(array == null || array.length == 0)
 			return;
 		
 		int mid = (low + high) / 2;
+		
 		if(low < high){
 			//对序列左半部分进行分组
 			mergeSort(array, low, mid);
@@ -114,7 +120,7 @@ public class TestSortDemo {
 	}
 	
 	//归并算法
-	public static void merge(int[] array,int low,int mid,int high){
+	public static void merge(int[] array, int low,int mid, int high){
 		
 		if(array == null || array.length == 0)
 			return;
@@ -148,7 +154,7 @@ public class TestSortDemo {
 		for(int i = 1; i < array.length; i++){
 			int key = array[i];
 			int j = i - 1;
-			for(; j >= 0 && array[j] > key; j--){
+			for(;j >= 0 && array[j] > key; j--){
 				array[j + 1] = array[j];
 			}
 			array[j + 1] = key;
@@ -164,14 +170,14 @@ public class TestSortDemo {
 		int step = array.length;
 		
 		while(step != 1){
+			
 			step = step / 2;
-			for(int k = 0; k < step; k++){
-				for(int i = k + step; i < array.length; i = i + step){
+			for(int k = 0; k < array.length; k++){
+				for(int i = k + step; i < array.length; i++){
 					int key = array[i];
 					int j = i - step;
-					for(; j >= 0 && array[j] > key; j = j - step){
+					for(; j >= 0 && array[j] > key; j = j - step)
 						array[j + step] = array[j];
-					}
 					array[j + step] = key;
 				}
 			}
@@ -190,7 +196,7 @@ public class TestSortDemo {
 			if(a < min)
 				min = a;
 			if(a > max)
-				max = a;
+				max= a;
 		}
 		int[] c = new int[max - min + 1];
 		
@@ -201,7 +207,7 @@ public class TestSortDemo {
 			c[i] = c[i] + c[i - 1];
 		
 		for(int i = 0; i < array.length; i++)
-			b[--c[array[i]-min]] = array[i];
+			b[--c[array[i] - min]] = array[i];
 		
 		return b;
 	}
@@ -217,6 +223,7 @@ public class TestSortDemo {
 		int m = 1,n = 1,k = 0;
 		
 		while(m <= max){
+			
 			for(int i = 0; i < array.length; i++){
 				int index = (array[i] / n) % 10;
 				temp[index][order[index]] = array[i];
