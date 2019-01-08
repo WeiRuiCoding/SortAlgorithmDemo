@@ -173,7 +173,7 @@ public class TestSortDemo {
 			
 			step = step / 2;
 			for(int k = 0; k < array.length; k++){
-				for(int i = k + step; i < array.length; i++){
+				for(int i = k + step; i < array.length; i = i + step){
 					int key = array[i];
 					int j = i - step;
 					for(; j >= 0 && array[j] > key; j = j - step)
@@ -196,7 +196,7 @@ public class TestSortDemo {
 			if(a < min)
 				min = a;
 			if(a > max)
-				max= a;
+				max = a;
 		}
 		int[] c = new int[max - min + 1];
 		
